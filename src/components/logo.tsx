@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export interface LogoProps {
   /** Logo size variant */
   size?: 'sm' | 'md' | 'lg' | 'xl';
