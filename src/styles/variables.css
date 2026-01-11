@@ -1,0 +1,102 @@
+:root {
+  --radius: 0.625rem;
+
+  /* Appo Brand Colors */
+  --appo-accent: #8a9eff;
+  --appo-accent-light: #b3c2ff;
+  --appo-accent-dark: #6b7fd9;
+
+  --appo-purple-400: #a78bfa;
+  --appo-purple-500: #8b5cf6;
+  --appo-purple-600: #7c3aed;
+  --appo-purple-700: #6d28d9;
+
+  /* Base colors - Light mode */
+  --background: 0 0% 99%;
+  --foreground: 261 40% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 261 40% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 261 40% 8%;
+
+  /* Primary - Appo accent #8a9eff */
+  --primary: 230 100% 77%;
+  --primary-foreground: 230 30% 15%;
+
+  /* Secondary */
+  --secondary: 270 30% 96%;
+  --secondary-foreground: 261 40% 8%;
+
+  /* Muted */
+  --muted: 270 20% 95%;
+  --muted-foreground: 261 10% 45%;
+
+  /* Accent - Purple tint */
+  --accent: 285 40% 92%;
+  --accent-foreground: 261 40% 8%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --border: 270 20% 90%;
+  --input: 270 20% 90%;
+  --ring: 230 100% 77%;
+
+  /* Chart colors */
+  --chart-1: 230 100% 77%;
+  --chart-2: 270 70% 60%;
+  --chart-3: 175 60% 45%;
+  --chart-4: 45 90% 65%;
+  --chart-5: 30 90% 55%;
+
+  /* Sidebar */
+  --sidebar-background: 270 20% 97%;
+  --sidebar-foreground: 261 40% 8%;
+  --sidebar-primary: 230 100% 77%;
+  --sidebar-primary-foreground: 230 30% 15%;
+  --sidebar-accent: 285 40% 92%;
+  --sidebar-accent-foreground: 261 40% 8%;
+  --sidebar-border: 270 20% 90%;
+  --sidebar-ring: 230 100% 77%;
+}
+
+.dark {
+  --background: 270 25% 7%;
+  --foreground: 270 10% 96%;
+  --card: 270 25% 10%;
+  --card-foreground: 270 10% 96%;
+  --popover: 270 25% 10%;
+  --popover-foreground: 270 10% 96%;
+
+  /* Primary - Appo accent #8a9eff */
+  --primary: 230 100% 77%;
+  --primary-foreground: 230 30% 10%;
+
+  --secondary: 270 20% 15%;
+  --secondary-foreground: 270 10% 96%;
+  --muted: 270 20% 15%;
+  --muted-foreground: 270 10% 60%;
+
+  --accent: 285 30% 18%;
+  --accent-foreground: 270 10% 96%;
+
+  --destructive: 0 62.8% 55%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 100% / 10%;
+  --input: 0 0% 100% / 15%;
+  --ring: 230 100% 77%;
+
+  --chart-1: 230 100% 77%;
+  --chart-2: 280 70% 65%;
+  --chart-3: 35 90% 55%;
+  --chart-4: 290 70% 60%;
+  --chart-5: 15 90% 55%;
+
+  --sidebar-background: 270 25% 10%;
+  --sidebar-foreground: 270 10% 96%;
+  --sidebar-primary: 230 100% 77%;
+  --sidebar-primary-foreground: 230 30% 10%;
+  --sidebar-accent: 285 30% 18%;
+  --sidebar-accent-foreground: 270 10% 96%;
+  --sidebar-border: 0 0% 100% / 10%;
+  --sidebar-ring: 230 100% 77%;
+}
