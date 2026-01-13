@@ -3,11 +3,87 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
 import {cn} from "../lib/utils"
 
-const TooltipProvider = TooltipPrimitive.Provider
+const TooltipProvider = React.forwardRef<
+    React.ElementRef<typeof TooltipPrimitive.Provider>,
+    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>
+>(({delayDuration = 0, ...props}, _ref) => (
+    <TooltipPrimitive.Provider delayDuration={delayDuration} {...props} />
+))
+TooltipProvider.displayName = "TooltipProvider"
 
-const Tooltip = TooltipPrimitive.Root
+type TooltipContextValue = {
+    clickedOpen: boolean
+    setClickedOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipContext = React.createContext<TooltipContextValue | null>(null)
+
+interface TooltipProps
+    extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root> {
+    children: React.ReactNode
+}
+
+const Tooltip = ({children, open, onOpenChange, ...props}: TooltipProps) => {
+    const [clickedOpen, setClickedOpen] = React.useState(false)
+    const isControlled = open !== undefined
+    const isOpen = isControlled ? open : clickedOpen || undefined
+
+    const handleOpenChange = (newOpen: boolean) => {
+        if (clickedOpen && !newOpen) {
+            // Don't close from hover when clicked open
+            return
+        }
+        onOpenChange?.(newOpen)
+    }
+
+    // Close on click outside
+    React.useEffect(() => {
+        if (!clickedOpen) return
+
+        const handleClickOutside = () => {
+            setClickedOpen(false)
+        }
+
+        const timeoutId = setTimeout(() => {
+            document.addEventListener("click", handleClickOutside)
+        }, 0)
+
+        return () => {
+            clearTimeout(timeoutId)
+            document.removeEventListener("click", handleClickOutside)
+        }
+    }, [clickedOpen])
+
+    return (
+        <TooltipContext.Provider value={{clickedOpen, setClickedOpen}}>
+            <TooltipPrimitive.Root
+                open={isOpen}
+                onOpenChange={handleOpenChange}
+                {...props}
+            >
+                {children}
+            </TooltipPrimitive.Root>
+        </TooltipContext.Provider>
+    )
+}
+
+const TooltipTrigger = React.forwardRef<
+    React.ElementRef<typeof TooltipPrimitive.Trigger>,
+    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Trigger>
+>(({onClick, ...props}, ref) => {
+    const context = React.useContext(TooltipContext)
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (context) {
+            e.stopPropagation()
+            context.setClickedOpen((prev) => !prev)
+        }
+        onClick?.(e)
+    }
+
+    return <TooltipPrimitive.Trigger ref={ref} onClick={handleClick} {...props} />
+})
+TooltipTrigger.displayName = "TooltipTrigger"
 
 const TooltipContent = React.forwardRef<
     React.ElementRef<typeof TooltipPrimitive.Content>,
