@@ -75,6 +75,24 @@ export const appolabsUIPreset: Partial<Config> = {
             700: 'var(--appo-purple-700)',
           },
         },
+        // Glass colors
+        glass: {
+          DEFAULT: 'var(--glass-bg)',
+          subtle: 'var(--glass-bg-subtle)',
+          elevated: 'var(--glass-bg-elevated)',
+          border: 'var(--glass-border)',
+          'border-subtle': 'var(--glass-border-subtle)',
+          foreground: 'hsl(var(--glass-foreground))',
+          'foreground-muted': 'hsl(var(--glass-foreground-muted))',
+        },
+      },
+      backdropBlur: {
+        glass: 'var(--glass-blur)',
+        'glass-strong': 'var(--glass-blur-strong)',
+      },
+      boxShadow: {
+        glass: 'var(--glass-shadow)',
+        'glass-elevated': 'var(--glass-shadow-elevated)',
       },
       keyframes: {
         'accordion-down': {

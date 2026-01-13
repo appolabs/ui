@@ -1,6 +1,6 @@
 # @appolabs/ui
 
-React UI component library for Appo Labs, built with Radix UI primitives and Tailwind CSS.
+React UI component library for Appo Labs, built with Radix UI primitives and Tailwind CSS. Features glassmorphism design system with full light/dark mode support.
 
 ## Installation
 
@@ -14,60 +14,47 @@ pnpm add @appolabs/ui
 
 ## Setup
 
-### 1. Configure Tailwind CSS
+### 1. Import CSS Variables
 
-Add `@appolabs/ui` to your Tailwind CSS content configuration to enable class scanning for animations and component styles:
+Import the CSS variables in your main stylesheet before Tailwind directives:
+
+```css
+/* app.css or globals.css */
+@import '@appolabs/ui/styles/variables.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### 2. Configure Tailwind CSS
+
+Use the `@appolabs/ui` preset for full theme support including glass utilities:
 
 ```js
 // tailwind.config.js
+import { appolabsUIPreset } from '@appolabs/ui/tailwind';
+
 export default {
+  presets: [appolabsUIPreset],
   content: [
-    // ... your other content paths
-    './node_modules/@appolabs/ui/**/*.{js,ts,jsx,tsx}',
+    // ... your content paths
+    './node_modules/@appolabs/ui/dist/**/*.{js,cjs}',
   ],
-  plugins: [
-    require('tailwindcss-animate'),
-    // ... your other plugins
-  ],
+  // ... rest of your config
 };
 ```
 
-### 2. Import Global Styles (optional)
+The preset includes:
+- Color system (primary, secondary, muted, accent, destructive)
+- Glass colors and utilities (`bg-glass`, `backdrop-blur-glass`, `shadow-glass`)
+- Appo brand colors
+- Animations (accordion, fade, scale, shimmer, glow-pulse)
+- Border radius tokens
 
-If you want to use the default theme variables:
+### 3. Add Toaster Component
 
-```js
-import '@appolabs/ui/styles/globals.css';
-```
-
-Or just the CSS variables:
-
-```js
-import '@appolabs/ui/styles/variables.css';
-```
-
-## Usage
-
-```tsx
-import { Button, Toast, Toaster, useToast } from '@appolabs/ui';
-
-function App() {
-  const { toast } = useToast();
-
-  return (
-    <>
-      <Button onClick={() => toast({ title: 'Hello!' })}>
-        Show Toast
-      </Button>
-      <Toaster />
-    </>
-  );
-}
-```
-
-### Toast Notifications
-
-The toast system requires a single `<Toaster />` component at the root of your app:
+Add the `<Toaster />` component at the root of your app for toast notifications:
 
 ```tsx
 // app.tsx or layout.tsx
@@ -83,7 +70,42 @@ function App({ children }) {
 }
 ```
 
-Then use the `useToast` hook anywhere in your app:
+## Usage
+
+### Basic Components
+
+```tsx
+import { Button, Input, Card } from '@appolabs/ui';
+
+function MyForm() {
+  return (
+    <Card>
+      <Input placeholder="Enter your email" />
+      <Button>Submit</Button>
+    </Card>
+  );
+}
+```
+
+### Glass Components
+
+Glass components provide a frosted glass aesthetic with backdrop blur:
+
+```tsx
+import { GlassCard, Input } from '@appolabs/ui';
+
+function AuthForm() {
+  return (
+    <GlassCard variant="auth" padding="lg">
+      <Input variant="glass" placeholder="Email" />
+      <Input variant="glass" type="password" placeholder="Password" />
+      <Button>Sign In</Button>
+    </GlassCard>
+  );
+}
+```
+
+### Toast Notifications
 
 ```tsx
 import { useToast } from '@appolabs/ui';
@@ -99,14 +121,13 @@ function MyComponent() {
     });
   };
 
-  return <button onClick={handleClick}>Submit</button>;
+  return <Button onClick={handleClick}>Submit</Button>;
 }
 ```
 
 ## Components
 
-This library includes components based on shadcn/ui patterns:
-
+### Core Components
 - Accordion
 - Alert Dialog
 - Avatar
@@ -115,21 +136,45 @@ This library includes components based on shadcn/ui patterns:
 - Checkbox
 - Dialog
 - Dropdown Menu
-- Form
-- Input
+- Form (with react-hook-form integration)
+- Input (with `glass` variant)
 - Label
 - Popover
 - Progress
 - Radio Group
 - Select
-- Separator
+- Separator (with `glass` variant)
 - Slider
 - Switch
 - Tabs
 - Textarea
-- Toast
+- Toast / Toaster
 - Tooltip
-- And more...
+
+### Glass Components
+- GlassCard - Translucent card with backdrop blur
+- Input `variant="glass"` - Glass-styled input field
+- Separator `variant="glass"` - Glass-styled separator
+
+## Theme Customization
+
+The library uses CSS variables for theming. Override them in your CSS:
+
+```css
+:root {
+  --primary: 230 100% 77%;
+  --primary-foreground: 230 30% 15%;
+  /* ... other variables */
+}
+
+.dark {
+  --primary: 230 100% 77%;
+  --primary-foreground: 230 30% 10%;
+  /* ... dark mode variables */
+}
+```
+
+See `@appolabs/ui/styles/variables.css` for all available variables.
 
 ## License
 

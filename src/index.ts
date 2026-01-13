@@ -205,6 +205,19 @@ export {
   GlassCardTitle,
   glassCardVariants,
 } from './components/glass-card';
+export type { GlassCardProps } from './components/glass-card';
+
+// Glass Header
+export { GlassHeader, glassHeaderVariants } from './components/glass-header';
+export type { GlassHeaderProps } from './components/glass-header';
+
+// Glass Overlay
+export { GlassOverlay, glassOverlayVariants } from './components/glass-overlay';
+export type { GlassOverlayProps } from './components/glass-overlay';
+
+// Glass Tabs
+export { GlassTabs, glassTabsContainerVariants, glassTabVariants } from './components/glass-tabs';
+export type { GlassTabsProps, TabItem as GlassTabItem } from './components/glass-tabs';
 
 // Hover Card
 export {
@@ -214,7 +227,7 @@ export {
 } from './components/hover-card';
 
 // Input
-export { Input } from './components/input';
+export { Input, inputVariants } from './components/input';
 export type { InputProps } from './components/input';
 
 // Input OTP
@@ -302,7 +315,7 @@ export {
 } from './components/select';
 
 // Separator
-export { Separator } from './components/separator';
+export { Separator, separatorVariants } from './components/separator';
 
 // Sheet
 export {

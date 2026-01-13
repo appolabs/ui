@@ -1,6 +1,19 @@
 :root {
   --radius: 0.625rem;
 
+  /* Glass foundation - Light mode */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.5);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-subtle: rgba(0, 0, 0, 0.05);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --glass-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --glass-blur: 16px;
+  --glass-blur-strong: 24px;
+  --glass-foreground: 220 15% 20%;
+  --glass-foreground-muted: 220 10% 45%;
+
   /* Appo Brand Colors */
   --appo-accent: #8a9eff;
   --appo-accent-light: #b3c2ff;
@@ -60,6 +73,17 @@
 }
 
 .dark {
+  /* Glass foundation - Dark mode */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.05);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-subtle: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --glass-foreground: 0 0% 100%;
+  --glass-foreground-muted: 220 10% 60%;
+
   --background: 270 25% 7%;
   --foreground: 270 10% 96%;
   --card: 270 25% 10%;
