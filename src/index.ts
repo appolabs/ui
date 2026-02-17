@@ -44,6 +44,16 @@ export { Avatar, AvatarFallback, AvatarImage } from './components/avatar';
 export { Badge, badgeVariants } from './components/badge';
 export type { BadgeProps } from './components/badge';
 
+// Banner
+export {
+  Banner,
+  BannerTitle,
+  BannerDescription,
+  BannerActions,
+  bannerVariants,
+} from './components/banner';
+export type { BannerProps } from './components/banner';
+
 // Breadcrumb
 export {
   Breadcrumb,
@@ -139,6 +149,7 @@ export {
 // Dialog
 export {
   Dialog,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogDescription,
