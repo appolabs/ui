@@ -73,7 +73,7 @@ const DialogHeader = ({
                       }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
         className={cn(
-            "flex flex-shrink-0 flex-col space-y-1.5 px-6 pt-6 text-center sm:text-left",
+            "flex flex-shrink-0 flex-col space-y-1.5 px-4 pt-4 text-center sm:text-left",
             className
         )}
         {...props}
@@ -87,7 +87,7 @@ const DialogBody = ({
                     }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
         className={cn(
-            "flex-1 overflow-y-auto hide-scrollbar px-6 pb-2",
+            "flex-1 overflow-y-auto hide-scrollbar px-4 pb-2",
             className
         )}
         {...props}
@@ -101,13 +101,49 @@ const DialogFooter = ({
                       }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
         className={cn(
-            "flex flex-shrink-0 flex-col-reverse gap-2 px-6 pb-6 sm:flex-row sm:justify-end",
+            "flex flex-shrink-0 flex-col-reverse gap-2 px-4 pb-4 sm:flex-row sm:justify-end",
             className
         )}
         {...props}
     />
 )
 DialogFooter.displayName = "DialogFooter"
+
+interface DialogStepsProps {
+    currentStep: number
+    totalSteps: number
+    className?: string
+}
+
+/**
+ * Step indicator pills for wizard dialogs.
+ *
+ * Place as the first child of DialogContent (before DialogHeader).
+ * - Mobile: centered at the top edge of the sheet, like a grab indicator.
+ * - Desktop (sm+): absolute top-right corner of the dialog.
+ */
+const DialogSteps = ({currentStep, totalSteps, className}: DialogStepsProps) => (
+    <div className={cn(
+        "flex items-center justify-center gap-1.5 pt-4 -mb-2",
+        "sm:absolute sm:right-4 sm:top-4 sm:pt-0 sm:mb-0 sm:z-10",
+        className
+    )}>
+        {Array.from({length: totalSteps}).map((_, index) => (
+            <div
+                key={index}
+                className={cn(
+                    "h-1.5 w-6 rounded-full transition-colors",
+                    index < currentStep - 1
+                        ? "bg-primary"
+                        : index === currentStep - 1
+                            ? "bg-primary/50"
+                            : "bg-muted"
+                )}
+            />
+        ))}
+    </div>
+)
+DialogSteps.displayName = "DialogSteps"
 
 const DialogTitle = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Title>,
@@ -146,6 +182,7 @@ export {
     DialogHeader,
     DialogBody,
     DialogFooter,
+    DialogSteps,
     DialogTitle,
     DialogDescription,
 }
