@@ -37,7 +37,9 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+
+      - name: Configure npm registry for OIDC trusted publishing
+        run: echo "registry=https://registry.npmjs.org/" > ~/.npmrc
 
       - name: Bump patch version
         if: steps.check.outputs.needs_bump == 'true'
