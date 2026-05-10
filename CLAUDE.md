@@ -26,5 +26,5 @@ pnpm lint && pnpm typecheck && pnpm test && pnpm build
 Releases are automated on push to `master`. The workflow in `.github/workflows/release.yml`:
 1. Checks if the current `package.json` version is already tagged — if so, bumps patch automatically
 2. Runs lint, typecheck, test, build
-3. Publishes to npm with provenance
+3. Publishes to npm with provenance via OIDC Trusted Publishing
 4. Creates a GitHub release
