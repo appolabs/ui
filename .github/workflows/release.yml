@@ -37,6 +37,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Bump patch version
         if: steps.check.outputs.needs_bump == 'true'
