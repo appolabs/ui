@@ -34,7 +34,7 @@ export function CookieBanner({
                         Cookie policy
                     </a>
                 </p>
-                <div className="flex shrink-0 items-center gap-2">
+                <div className="flex shrink-0 items-center gap-2 self-end sm:self-auto">
                     {onManage && (
                         <Button variant="ghost" size="sm" onClick={onManage} className="hover:bg-transparent hover:underline">
                             Gestisci
