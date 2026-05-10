@@ -37,6 +37,10 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Remove auth token placeholder so OIDC can take over
+        run: sed -i '/^\/\/registry.npmjs.org\/:_authToken/d' ~/.npmrc
 
       - name: Bump patch version
         if: steps.check.outputs.needs_bump == 'true'
@@ -76,8 +80,6 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --provenance --access public
-        env:
-          NPM_CONFIG_REGISTRY: 'https://registry.npmjs.org/'
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
