@@ -40,7 +40,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Remove auth token placeholder so OIDC can take over
-        run: sed -i '/^\/\/registry.npmjs.org\/:_authToken/d' ~/.npmrc
+        run: |
+          RC="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+          [ -f "$RC" ] && sed -i '/^\/\/registry.npmjs.org\/:_authToken/d' "$RC" || true
 
       - name: Bump patch version
         if: steps.check.outputs.needs_bump == 'true'
