@@ -10,10 +10,10 @@ export interface CookieBannerProps {
 }
 
 /**
- * Brand-fixed cookie consent banner. Hardcoded zinc-800/95 card + gradient
- * accept button — intentionally NOT theme-aware. Cookie banners are a
- * cross-product brand element; consistency across apps-web-app and the
- * marketing website matters more than per-app theming.
+ * Brand-fixed cookie consent banner. Reads as a sibling system bar to the
+ * site/app topbar: translucent `bg-white/5` + `backdrop-blur-md` over the
+ * page's own background. Card design is the canonical Appo design-system
+ * "glass card" — match this treatment in any new card-like surfaces.
  *
  * If you need a different visual for a future product, do not add a variant
  * prop to this component — duplicate it under a different name.
@@ -31,7 +31,7 @@ export function CookieBanner({
     return (
         <div className={cn('fixed bottom-0 left-0 right-0 z-50 sm:py-4 sm:px-4 md:px-6 lg:px-8', className)}>
             <div className="sm:max-w-7xl sm:mx-auto">
-                <div className="border border-white/10 bg-zinc-800/95 backdrop-blur-md flex flex-col gap-4 px-4 py-3 sm:rounded-xl sm:flex-row sm:items-center sm:justify-between">
+                <div className="border border-white/10 bg-white/5 backdrop-blur-md flex flex-col gap-4 px-4 py-3 sm:rounded-xl sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-sm text-white/60">
                         Utilizziamo i cookie per migliorare la tua esperienza.{' '}
                         <a
