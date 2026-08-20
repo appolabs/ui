@@ -40,7 +40,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Upgrade npm (OIDC trusted publishing needs >= 11.5.1)
-        run: npm install -g npm@latest
+        run: npm install -g 'npm@^11.5.1'
 
       - name: Bump patch version
         if: steps.check.outputs.needs_bump == 'true'
