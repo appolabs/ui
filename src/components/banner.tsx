@@ -105,25 +105,27 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
             className={cn(bannerVariants({variant}), className)}
             {...props}
         >
-            <div className="flex items-start gap-3">
-                {icon && (
-                    <div className={cn(bannerIconVariants({variant}))}>
-                        {icon}
-                    </div>
-                )}
-                <div className="flex-1 min-w-0">
-                    {children}
+            {(icon || onDismiss) && (
+                <div className="flex items-start">
+                    {icon && (
+                        <div className={cn(bannerIconVariants({variant}))}>
+                            {icon}
+                        </div>
+                    )}
+                    {onDismiss && (
+                        <button
+                            type="button"
+                            onClick={onDismiss}
+                            className={cn(bannerDismissVariants({variant}), "ml-auto flex-shrink-0")}
+                        >
+                            <X className="h-4 w-4" />
+                            <span className="sr-only">Dismiss</span>
+                        </button>
+                    )}
                 </div>
-                {onDismiss && (
-                    <button
-                        type="button"
-                        onClick={onDismiss}
-                        className={cn(bannerDismissVariants({variant}), "flex-shrink-0")}
-                    >
-                        <X className="h-4 w-4" />
-                        <span className="sr-only">Dismiss</span>
-                    </button>
-                )}
+            )}
+            <div className={cn("min-w-0", (icon || onDismiss) && "mt-3")}>
+                {children}
             </div>
         </div>
     )
