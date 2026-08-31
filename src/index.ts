@@ -18,7 +18,7 @@ export { Alert, AlertDescription, AlertTitle } from './components/alert';
 
 // Cookie Banner
 export { CookieBanner } from './components/cookie-banner';
-export type { CookieBannerProps } from './components/cookie-banner';
+export type { CookieBannerProps, CookieBannerLabels } from './components/cookie-banner';
 
 // Alert Dialog
 export {

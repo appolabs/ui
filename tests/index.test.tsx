@@ -13,6 +13,7 @@ import {
   Checkbox,
   Separator,
   Skeleton,
+  CookieBanner,
 } from '../src/index';
 
 describe('@appolabs/ui', () => {
@@ -114,6 +115,56 @@ describe('@appolabs/ui', () => {
     it('renders skeleton', () => {
       render(<Skeleton data-testid="skeleton" className="h-4 w-20" />);
       expect(screen.getByTestId('skeleton')).toBeInTheDocument();
+    });
+  });
+
+  describe('CookieBanner', () => {
+    const handlers = {
+      onAccept: () => {},
+      onReject: () => {},
+      onManage: () => {},
+    };
+
+    it('falls back to the Italian defaults when no labels are given', () => {
+      render(<CookieBanner visible cookiePolicyUrl="https://example.test/cookie" {...handlers} />);
+      expect(screen.getByRole('button', { name: 'Accetta tutto' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Rifiuta' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Gestisci' })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'Cookie policy' })).toBeInTheDocument();
+    });
+
+    it('renders the labels it is given', () => {
+      render(
+        <CookieBanner
+          visible
+          cookiePolicyUrl="https://example.test/cookie"
+          labels={{
+            message: 'We use cookies to improve your experience.',
+            policyLink: 'Cookie policy',
+            manage: 'Manage',
+            reject: 'Reject',
+            accept: 'Accept all',
+          }}
+          {...handlers}
+        />
+      );
+      expect(screen.getByText('We use cookies to improve your experience.')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Accept all' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Reject' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Manage' })).toBeInTheDocument();
+    });
+
+    it('merges a partial label set over the defaults', () => {
+      render(
+        <CookieBanner
+          visible
+          cookiePolicyUrl="https://example.test/cookie"
+          labels={{ accept: 'Accept all' }}
+          {...handlers}
+        />
+      );
+      expect(screen.getByRole('button', { name: 'Accept all' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Rifiuta' })).toBeInTheDocument();
     });
   });
 });
