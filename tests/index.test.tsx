@@ -61,6 +61,25 @@ describe('@appolabs/ui', () => {
       render(<Input type="email" placeholder="Email" />);
       expect(screen.getByPlaceholderText('Email')).toHaveAttribute('type', 'email');
     });
+
+    it('defaults to the standard height', () => {
+      render(<Input placeholder="Default" />);
+      expect(screen.getByPlaceholderText('Default')).toHaveClass('h-10');
+    });
+
+    it('applies the xl focal size', () => {
+      render(<Input inputSize="xl" placeholder="Focal" />);
+      const input = screen.getByPlaceholderText('Focal');
+      expect(input).toHaveClass('h-14');
+      expect(input).toHaveClass('text-xl');
+    });
+
+    it('keeps the numeric size attribute usable alongside inputSize', () => {
+      render(<Input inputSize="lg" size={40} placeholder="Both" />);
+      const input = screen.getByPlaceholderText('Both');
+      expect(input).toHaveClass('h-12');
+      expect(input).toHaveAttribute('size', '40');
+    });
   });
 
   describe('Label', () => {
