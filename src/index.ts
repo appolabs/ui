@@ -97,6 +97,14 @@ export {
 } from './components/carousel';
 export type { CarouselApi } from './components/carousel';
 
+// Chat Bubble
+export { ChatBubble } from './components/chat-bubble';
+export type { ChatBubbleProps } from './components/chat-bubble';
+
+// Chat Composer
+export { ChatComposer } from './components/chat-composer';
+export type { ChatComposerProps } from './components/chat-composer';
+
 // Chart
 export {
   ChartContainer,
@@ -150,6 +158,10 @@ export {
   ContextMenuTrigger,
 } from './components/context-menu';
 
+// Data Table
+export { DataTable } from './components/data-table';
+export type { DataTableColumn, DataTableProps } from './components/data-table';
+
 // Dialog
 export {
   Dialog,
@@ -198,6 +210,10 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './components/dropdown-menu';
+
+// Empty State
+export { EmptyState } from './components/empty-state';
+export type { EmptyStateProps } from './components/empty-state';
 
 // Form
 export {

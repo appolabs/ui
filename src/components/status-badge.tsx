@@ -24,6 +24,10 @@ const statusBadgeVariants = cva(
                     "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
                 waiting_deletion:
                     "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+                open:
+                    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
+                closed:
+                    "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400",
             },
         },
         defaultVariants: {
@@ -41,6 +45,8 @@ const statusLabels: Record<string, string> = {
     waiting_publication: "Publishing...",
     published: "Published",
     waiting_deletion: "Deleting...",
+    open: "Open",
+    closed: "Closed",
 }
 
 const statusIcons: Record<string, React.ReactNode> = {
@@ -76,6 +82,12 @@ const statusIcons: Record<string, React.ReactNode> = {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
         </span>
+    ),
+    open: (
+        <span className="inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+    ),
+    closed: (
+        <span className="inline-flex rounded-full h-2 w-2 bg-gray-400"></span>
     ),
 }
 
