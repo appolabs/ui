@@ -87,6 +87,18 @@ describe('@appolabs/ui', () => {
       render(<Label>Username</Label>);
       expect(screen.getByText('Username')).toBeInTheDocument();
     });
+
+    it('is a block so its box matches its line height', () => {
+      render(<Label>Username</Label>);
+      expect(screen.getByText('Username')).toHaveClass('block');
+    });
+
+    it('lets the caller set another display', () => {
+      render(<Label className="flex">Username</Label>);
+      const label = screen.getByText('Username');
+      expect(label).toHaveClass('flex');
+      expect(label).not.toHaveClass('block');
+    });
   });
 
   describe('Badge', () => {
