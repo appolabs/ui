@@ -52,9 +52,9 @@ export function CookieBanner({
     const copy = { ...defaultLabels, ...labels };
 
     return (
-        <div className={cn('fixed bottom-0 left-0 right-0 z-50 sm:py-4 sm:px-4 md:px-6 lg:px-8', className)}>
+        <div className={cn('pointer-events-none fixed bottom-0 left-0 right-0 z-50 sm:py-4 sm:px-4 md:px-6 lg:px-8', className)}>
             <div className="sm:max-w-7xl sm:mx-auto">
-                <div className="border border-white/10 bg-white/5 backdrop-blur-md flex flex-col gap-4 px-4 py-3 sm:rounded-xl sm:flex-row sm:items-center sm:justify-between">
+                <div className="pointer-events-auto border border-white/10 bg-white/5 backdrop-blur-md flex flex-col gap-4 px-4 py-3 sm:rounded-xl sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-sm text-white/60">
                         {copy.message}{' '}
                         <a

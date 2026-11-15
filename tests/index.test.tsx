@@ -197,5 +197,16 @@ describe('@appolabs/ui', () => {
       expect(screen.getByRole('button', { name: 'Accept all' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Rifiuta' })).toBeInTheDocument();
     });
+
+    it('lets clicks through the area around the card', () => {
+      const { container } = render(
+        <CookieBanner visible cookiePolicyUrl="https://example.test/cookie" {...handlers} />
+      );
+      const frame = container.firstElementChild as HTMLElement;
+      const card = screen.getByRole('button', { name: 'Accetta tutto' }).closest('.backdrop-blur-md') as HTMLElement;
+
+      expect(frame).toHaveClass('pointer-events-none');
+      expect(card).toHaveClass('pointer-events-auto');
+    });
   });
 });
